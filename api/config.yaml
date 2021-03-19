@@ -1,0 +1,26 @@
+# Service level details
+name: Playlog coding test public API service
+desc: Collection of playlog coding test core API services
+host: 0.0.0.0
+port: 9000
+
+# Service graceful shutdown time (s)
+sht: 15
+
+# Database
+db:
+  host: mysql
+  port: 3306
+  user: default
+  pwd: secret
+  db: default
+
+# TODO: Cache
+cache:
+  host: redis
+  port: 0
+  user: default
+  pass: secret
+  min_cache: 1 # minutes
+  max_cache: 5 # minutes
+  
