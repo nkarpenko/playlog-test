@@ -46,21 +46,22 @@ class PlaylogCodingTest {
 
     event.preventDefault();
 
-    console.log("do something _login");
-
     var name = $('#username').val();
-    var url = self._settings.baseUrl + '/user/login/' + name;
  
     $.ajax({
-      dataType: 'json',
+      dataType: "jsonp",
       url: self._settings.baseUrl + '/user/login/' + name,
       type: "POST", 
-
       success:function(response){
-        console.log(response);
+        var name = response.data.name;
+
+        $(loginInfoSelector).html(`Welcome, ${name}`)
+
+
+        // Load welcome msg
       },
       complete:function(){
-        alert('completed');
+        console.log('completed');
 
         return false;
       },

@@ -24,9 +24,7 @@ func Handlers(r *mux.Router, a *app.App) {
 
 func Login(a *app.App) request.HandlerFunc {
 	return request.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "text/html; charset=ascii")
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+
 		// Get the vars.
 		vars := mux.Vars(r)
 		name, err := request.GetVarString(vars, "name")
