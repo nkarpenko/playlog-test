@@ -192,8 +192,8 @@ func (s *service) CreateComment(userID int64, comment string) (model.Comment, er
 	query := sb.NewInsertBuilder()
 	query.InsertInto("comment")
 	query.Cols(
-		string("comment"),
 		string("user_id"),
+		string("comment"),
 	)
 	query.Values(
 		userID,

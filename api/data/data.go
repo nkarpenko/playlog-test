@@ -49,7 +49,7 @@ func (d *data) User() user.Service {
 // New database instance
 func New(msc *conf.DBConfig) (Data, error) {
 	// Establish mysql db connection.
-	msConnString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", msc.User, msc.Password, msc.Host, msc.Port, msc.Database)
+	msConnString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", msc.User, msc.Password, msc.Host, msc.Port, msc.Database)
 	st, err := sql.Open("mysql", msConnString)
 	if err != nil {
 		log.Warnf("MySQL - Unable to connect: %s", err.Error())
