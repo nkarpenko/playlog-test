@@ -17,8 +17,8 @@
 - [x] Implement Service + intial CLI initialization structure
 - [x] Implement Golang yaml configuration with cobra + viper
 - [x] Implement Golang application layer
-- [ ] Finish Data layer implementaiton for comments ~30 minutes
-- [ ] Finish domain layer implementaiton for comments ~1 hour to prepare extendability for caching mech as well
+- [x] Finish Data layer implementaiton for comments ~30 minutes
+- [x] Finish domain layer implementaiton for comments ~1 hour to prepare extendability for caching mech as well
 - [ ] Implement redis as a cache, seperate service part of the services package and leveraged by the domain layer ~1-2 hours
 - [ ] Unit tests for Golang ~1 hour
 - [ ] Integration/Cucumber/BDD tests for Golang ~1 hour
