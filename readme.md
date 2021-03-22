@@ -27,3 +27,4 @@
 - [ ] Swagger docs ~30 minutes
 - [ ] Leave notes on what I would do different in production, especially with caching and queues ~10 
 - [ ] Makefile for easy building ~10 minutes
+- [ ] Create a static seed gen
