@@ -20,25 +20,25 @@ func Handlers(r *mux.Router, a *app.App) {
 	s := r.PathPrefix("/comment").Subrouter()
 
 	// Get all comments endpoint.
-	s.HandleFunc("/all", GetAllComments(a)).Methods("GET")
+	s.HandleFunc("/all", GetAllComments(a)).Methods("GET", "OPTIONS")
 
 	// Create comment endpoint.
 	s.HandleFunc("/create", CreateComment(a)).
 		Queries("user_id", "{user_id}").
 		Queries("comment", "{comment}").
-		Methods("POST")
+		Methods("POST", "OPTIONS")
 
 	// Delete comment endpoint.
 	s.HandleFunc("/delete", DeleteComment(a)).
 		Queries("user_id", "{user_id}").
 		Queries("comment_id", "{comment_id}").
-		Methods("POST")
+		Methods("POST", "OPTIONS")
 
 	// Like comment endpoint.
 	s.HandleFunc("/like", LikeComment(a)).
 		Queries("user_id", "{user_id}").
 		Queries("comment_id", "{comment_id}").
-		Methods("POST")
+		Methods("POST", "OPTIONS")
 }
 
 func GetAllComments(a *app.App) request.HandlerFunc {

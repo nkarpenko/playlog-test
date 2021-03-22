@@ -5,9 +5,9 @@
     <!-- Bootstrap + Jquery -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous"></script>
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Custom css/js -->
@@ -22,21 +22,21 @@
         <form method="post">
             <h2 class="text-center">Login</h2>   
             <div class="form-group has-error">
-              <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+              <input id="username" type="text" class="form-control" name="username" placeholder="Username" required="required">
             </div>      
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                <a id="login-submit-btn" class="btn btn-primary btn-lg btn-block" style="color:white;">Sign in</a>
             </div>
         </form>
       </div>
-      <div id="comment-wrap">
+      <div id="comment-form-wrap">
         <form method="post">
             <h4 class="text-left">Add a comment.</h4>   
             <div class="form-group has-error">
               <textarea id="comment-box" class="form-control" name="comment" placeholder="Enter a comment" rows="6"></textarea>
             </div>      
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Add comment</button>
+                <a id="comment-submit-form-selector" type="submit" class="btn btn-primary btn-lg btn-block" style="color:white;">Add comment</a>
             </div>
         </form>
       </div>
