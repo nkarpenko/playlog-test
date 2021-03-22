@@ -28,18 +28,75 @@ func Handlers(r *mux.Router, a *app.App) {
 
 func GetAllComments(a *app.App) request.HandlerFunc {
 	return request.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Get all comments.
+		c, err := a.CommentService.GetCommentsAll()
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
 
+		// Successful response.
+		response.APIResponse(w, c)
+		return
 	})
 }
 
 func CreateComment(a *app.App) request.HandlerFunc {
 	return request.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Get the vars.
+		vars := mux.Vars(r)
+		userID, err := request.GetVarInt64(vars, "user_id")
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
 
+		comment, err := request.GetVarString(vars, "comment")
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
+
+		// Create the comment.
+		c, err := a.CommentService.CreateComment(userID, comment)
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
+
+		// Successful response.
+		response.APIResponse(w, c)
+		return
 	})
 }
 
 func DeleteComment(a *app.App) request.HandlerFunc {
 	return request.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
+		// Get the vars.
+		vars := mux.Vars(r)
+		userID, err := request.GetVarInt64(vars, "user_id")
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
+
+		commentID, err := request.GetVarInt64(vars, "comment_id")
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
+
+		// Delete the comment.
+		err = a.CommentService.DeleteComment(userID, commentID)
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
+
+		// Successful response.
+		response.APIResponse(w, true)
+		return
 
 	})
 }
@@ -47,42 +104,29 @@ func DeleteComment(a *app.App) request.HandlerFunc {
 func LikeComment(a *app.App) request.HandlerFunc {
 	return request.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
+		// Get the vars.
+		vars := mux.Vars(r)
+		userID, err := request.GetVarInt64(vars, "user_id")
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
+
+		commentID, err := request.GetVarInt64(vars, "comment_id")
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
+
+		// Delete the comment.
+		err = a.CommentService.CreateCommentLike(userID, commentID)
+		if err != nil {
+			response.InternalServerError(w, err)
+			return
+		}
+
+		// Successful response.
+		response.APIResponse(w, true)
+		return
 	})
 }
-
-// GetDomainAvailability handler
-// func GetDomainAvailability(a *app.App) request.HandlerFunc {
-// 	return request.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-// 		// Get the vars.
-// 		vars := mux.Vars(r)
-// 		name, err := request.GetVarString(vars, common.VarName)
-// 		if err != nil {
-// 			response.InternalServerError(w, err)
-// 			return
-// 		}
-
-// 		// Get the domain availability.
-// 		p, err := a.DomainService.GetDomainAvailability(name)
-// 		if err != nil {
-// 			// Domain level errors.
-// 			switch err {
-// 			case derr.ErrDomainInvalid:
-// 				response.APIResponseError(w, apierr.ErrDomainInvalid, err)
-// 				return
-// 			case derr.ErrDomainAvCheck:
-// 				response.APIResponseError(w, apierr.ErrDomainAvCheck, err)
-// 				return
-// 			case derr.ErrDomainWhoisReq:
-// 				response.APIResponseError(w, apierr.ErrDomainWhoisReq, err)
-// 				return
-// 			default:
-// 				response.InternalServerError(w, err)
-// 				return
-// 			}
-// 		}
-
-// 		// Successful response.
-// 		response.APIResponse(w, p)
-// 		return
-// 	})
-// }

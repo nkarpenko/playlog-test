@@ -48,10 +48,10 @@ func (s *service) CreateUser(name string) (model.User, error) {
 }
 
 func (s *service) GetUserByName(name string) (model.User, error) {
-	// Init USER.
+	// Init user.
 	var user model.User
 
-	// Build and execute query to get `setting` from `user_setting` table.
+	// Build and execute query.
 	query := sb.NewSelectBuilder()
 	query.Select(
 		string("id"),
@@ -67,7 +67,7 @@ func (s *service) GetUserByName(name string) (model.User, error) {
 		return user, err
 	}
 
-	// Get the setting.
+	// Get the user.
 	defer rows.Close()
 	rows.Next()
 	err = rows.Scan(
@@ -84,12 +84,12 @@ func (s *service) GetUserByName(name string) (model.User, error) {
 
 func (s *service) IsExistsUser(name string) (bool, error) {
 
+	// Build query.
 	query := sb.NewSelectBuilder()
 	query.Select("*")
 	query.From("user")
 	query.Where(
 		query.Equal("name", name))
-	//query.Limit(1)
 
 	sqlq, args := query.Build()
 	rows, err := s.storage.Query(sqlq, args...)
@@ -97,13 +97,13 @@ func (s *service) IsExistsUser(name string) (bool, error) {
 		return false, err
 	}
 
-	// User does exist.
+	// User does not exist.
 	defer rows.Close()
 	if !rows.Next() {
 		return false, nil
 	}
 
-	// User has settings.
+	// User exists.
 	return true, nil
 }
 
